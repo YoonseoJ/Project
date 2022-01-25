@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/styles": "^4.11.4",
+    "@mui/icons-material": "^5.0.4",
+    "@mui/lab": "^5.0.0-alpha.53",
+    "@mui/material": "^5.0.4",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.27.1",
+    "express": "^4.17.1",
+    "material-ui-popup-state": "^2.0.0",
+    "mongodb": "^3.5.9",
+    "mongoose": "^6.0.12",
+    "next": "^12.0.4",
+    "next-auth": "^3.29.0",
+    "password-hash": "^1.2.2",
+    "qrcode.react": "^1.0.1",
+    "react": "^17.0.2",
+    "react-click-away-listener": "^2.0.5",
+    "react-dom": "^17.0.2",
+    "react-geocode": "^0.2.3",
+    "react-google-maps": "^9.4.5",
+    "react-router-dom": "^6.0.2",
+    "sass": "^1.43.2",
+    "typescript": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.26"
+  },
+  "cacheDirectories": [
+    ".next/cache"
+  ]
+}
