@@ -3,12 +3,12 @@ import { useState } from 'react'
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Homepage from "../components/hompage";
-import { getScarves } from "../backend/database";
-import Scarf from "../components/scarf";
+import { getDesserts } from "../backend/database";
+import Dessert from "../components/dessert";
 
-export default function Home(props) {
+export default function Home({desserts}) {
     const [search, setSearch] = useState("");
-    console.log("test: ", props.scarves)
+    // console.log("test: ", props.desserts)
 
     const handleSearch = (event) => {
         setSearch(event.target.value)
@@ -22,30 +22,25 @@ export default function Home(props) {
             </div>
 
             <div className="display_bananas">
-                <p className="banana_type">Show Your Cursed Knitted Scarf</p>
+                <p className="banana_type">Desserts</p>
                 <div className="banana_div">
                 {
-                    props.scarves.filter((scarves) => {
+                    desserts.filter((desserts) => {
                         if (search == "") {
-                            return scarves
+                            return desserts
                         }
                         else if (
-                            scarves.name.toLowerCase().includes(search.toLocaleLowerCase()) ||
-                            scarves.witch.toLowerCase().includes(search.toLocaleLowerCase()) ||
-                            scarves.material.toLowerCase().includes(search.toLocaleLowerCase()) ||
-                            scarves.length.toString().includes(search.toLocaleLowerCase()) ||
-                            scarves.width.toString().includes(search.toLocaleLowerCase()) ||
-                            scarves.weight.toString().includes(search.toLocaleLowerCase()) ||
-                            scarves.price.toString().includes(search.toLocaleLowerCase()) ||
-                            scarves.location.toLowerCase().includes(search.toLocaleLowerCase()) ||
-                            scarves.description.toLowerCase().includes(search.toLocaleLowerCase())) {
-                            return scarves
+                            desserts.name.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                            desserts.amount.toString().includes(search.toLocaleLowerCase()) ||
+                            desserts.price.toString().includes(search.toLocaleLowerCase()) ||
+                            desserts.ingredients.toLowerCase().includes(search.toLocaleLowerCase())) {
+                            return desserts
                         }
                         
                     }).map(
-                        (scarf) => {
+                        (dessert) => {
                             return (
-                                <Scarf scarf={scarf}/>
+                                <Dessert dessert={dessert}/>
                             )
                         }
                     )
@@ -58,30 +53,23 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-    const data = await getScarves();
-    console.log('data', data);
-    const scarves = data.reverse().map(
-        (scarf) => {
+    const data = await getDesserts();
+    const desserts = data.reverse().map(
+        (dessert) => {
             return {
-                id: scarf.id.toString(),
-                name: scarf.name,
-                witch: scarf.witch,
-                material: scarf.material,
-                length: scarf.length,
-                width: scarf.width,
-                weight: scarf.weight,
-                price: scarf.price,
-                location: scarf.location,
-                description: scarf.description,
-                image: scarf.image,
+                id: dessert.id.toString(),
+                name: dessert.name,
+                amount: dessert.amount,
+                price: dessert.price,
+                ingredients: dessert.ingredients,
+                image: dessert.image,
             };
         }
     )
-    // console.log('cards', cards)
 
     return {
-        props : {
-            scarves
+        props: {
+            desserts
         }
     }
 }

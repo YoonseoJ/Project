@@ -26,7 +26,7 @@ export default function Header() {
                 <>
                 <div className="header_right">
                     <Link href="/"><AccountCircleOutlinedIcon fontSize="large" className="header_icon"/></Link>
-                    <Link href="/"><img src="/skull-icon.png" alt="" className="header_skull_icon"/></Link>
+                    <Link href="/"><ShoppingCartOutlinedIcon fontSize="large" className="header_icon"/></Link>
                     <Link href="/"><button onClick={() => signOut({redirect: false, callbackUrl: "/"})} className="header_button">SIGNOUT</button></Link>
                 </div>
                 </>

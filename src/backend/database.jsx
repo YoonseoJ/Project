@@ -1,51 +1,49 @@
 import mongoose from 'mongoose';
-import Scarves from './models/Scarves';
+import Desserts from './models/Desserts';
 import User from './models/User';
 
 const uri = process.env.DATABASE_URL;
 
-export async function getScarves() {
+export async function getDesserts() {
     // connect to the client
     const client = await mongoose.connect(uri);
 
     // find is promise
-    const scarves = await Scarves.find();
+    const desserts = await Desserts.find();
 
-    return scarves;
+    return desserts;
 };
 
-export async function getOneScarf(scarfID) {
+export async function getOneDessert(dessertID) {
     const client = await mongoose.connect(uri);
-    const post = await Scarves.findById(scarfID);
+    const post = await Desserts.findById(dessertID);
     return post
 }
 
 // this function creates a cheetah
-export async function createScarf(name, witch, material, length, width, weight, price, location, description, image, userID) {
+export async function createDessert(name, amount, price, ingredients, image, userID) {
     const client = await mongoose.connect(uri);
 
-    const scarf = new Scarves(
+    const dessert = new Desserts(
         {
             name,
-            witch,
-            material,
-            length,
-            width,
-            weight,
+            amount, 
             price,
-            location,
-            description,
+            ingredients,
             image,
             user: userID
         }
     );
-    await scarf.save();
 
-    const user = await User.findById(userID);
-    // console.log('user for card: ', userID)
-    // console.log('user for card: ', user)
-    user.scarves.push(scarf);
-    await user.save();
+    console.log("amount = ", amount);
+    console.log("test: ", dessert);
+    await dessert.save();
+
+    // const user = await User.findById(userID);
+    // // console.log('user for card: ', userID)
+    // // console.log('user for card: ', user)
+    // user.desserts.push(dessert);
+    // await user.save();
 
     return 
 };

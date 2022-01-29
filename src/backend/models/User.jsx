@@ -6,8 +6,8 @@ const userSchema = new mongoose.Schema(
         email: String,
         image: String,
         password: String,
-        scarves: [
-            {type: mongoose.Schema.Types.ObjectId, ref: 'Scarves'}
+        desserts: [
+            {type: mongoose.Schema.Types.ObjectId, ref: 'Dessert'}
         ]
     }
 );
