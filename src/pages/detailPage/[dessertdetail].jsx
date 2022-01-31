@@ -14,6 +14,7 @@ export default function DetailPage({props}) {
                         component="img"
                         image={props.data.image}
                         alt="image"
+                        sx={{width: "20rem", height: "20rem"}}
                     />
                 </div>
                 <div className="detail_card_info_elements">

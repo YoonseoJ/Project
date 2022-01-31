@@ -191,7 +191,7 @@ export default function Upload() {
                                             component="img"
                                             image={image}
                                             alt="missing pet/person image"
-                                            sx={{width: "20rem", height: "14rem", borderRadius: "10px"}}
+                                            sx={{width: "20rem", height: "20rem", borderRadius: "10px"}}
                                         />
                                     </div>
                                 )}
@@ -209,7 +209,7 @@ export default function Upload() {
                                             component="img"
                                             image={image}
                                             alt="missing pet/person image"
-                                            sx={{width: "20rem", height: "14rem", borderRadius: "10px"}}
+                                            sx={{width: "20rem", height: "20rem", borderRadius: "10px"}}
                                         />
                                     </div>
                                 )}
