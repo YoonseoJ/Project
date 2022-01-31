@@ -100,7 +100,6 @@ export default function SignIn({ providers, csrfToken }) {
     }
     return (
         <div>
-            <Header/>
             <div className="signin_div"> 
                 <h1>
                     Log In
@@ -186,7 +185,6 @@ export default function SignIn({ providers, csrfToken }) {
                 })}
                 </div>
             </div>
-            <Footer/>
         </div>
     );
 }

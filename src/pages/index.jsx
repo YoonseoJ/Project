@@ -1,7 +1,5 @@
 import React from "react";
 import { useState } from 'react'
-import Header from "../components/header";
-import Footer from "../components/footer";
 import Homepage from "../components/hompage";
 import { getDesserts } from "../backend/database";
 import Dessert from "../components/dessert";
@@ -15,15 +13,14 @@ export default function Home({desserts}) {
     }
     return (
         <div>
-            <Header/>
             <Homepage/>
             <div className="searchbar">
                 <input type="text" onChange={handleSearch} placeholder="Search ..." className="search"/>
             </div>
 
-            <div className="display_bananas">
-                <p className="banana_type">Desserts</p>
-                <div className="banana_div">
+            <div className="display_desserts">
+                <p className="dessert_type">Desserts</p>
+                <div className="dessert_div">
                 {
                     desserts.filter((desserts) => {
                         if (search == "") {
@@ -36,7 +33,6 @@ export default function Home({desserts}) {
                             desserts.ingredients.toLowerCase().includes(search.toLocaleLowerCase())) {
                             return desserts
                         }
-                        
                     }).map(
                         (dessert) => {
                             return (
@@ -47,7 +43,6 @@ export default function Home({desserts}) {
                 }
                 </div>
             </div>
-            <Footer/>
         </div>
     )
 }

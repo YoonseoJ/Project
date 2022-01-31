@@ -89,7 +89,6 @@ export default function SignUp({ providers, csrfToken }) {
     }
     return (
         <div>
-            <Header/>
             <div className="signin_div"> 
                 <h1>
                     Sign Up Page
@@ -194,7 +193,6 @@ export default function SignUp({ providers, csrfToken }) {
                 })}
                 </div>
             </div>
-            <Footer/>
         </div>
     );
 }

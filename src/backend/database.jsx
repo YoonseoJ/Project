@@ -35,15 +35,15 @@ export async function createDessert(name, amount, price, ingredients, image, use
         }
     );
 
-    console.log("amount = ", amount);
-    console.log("test: ", dessert);
+    // console.log("amount = ", amount);
+    // console.log("test: ", dessert);
     await dessert.save();
 
-    // const user = await User.findById(userID);
-    // // console.log('user for card: ', userID)
-    // // console.log('user for card: ', user)
-    // user.desserts.push(dessert);
-    // await user.save();
+    const user = await User.findById(userID);
+    // console.log('user for card: ', userID)
+    // console.log('user for card: ', user)
+    user.desserts.push(dessert);
+    await user.save();
 
     return 
 };
@@ -89,7 +89,7 @@ export async function findUser(useremail) {
     const client = await mongoose.connect(uri);
 
     let user = await User.findOne({email: useremail}).exec();
-    console.log("testing: ", useremail);
+    // console.log("testing: ", useremail);
 
     // console.log("testing yes: ", user);
     return user;

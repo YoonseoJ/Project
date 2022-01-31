@@ -37,7 +37,7 @@ export default async function handler(req, res) {
         if(!isValidPassword(password) && password.length < 16 && password.length >= 0) {
             throw ValidateError("password", "password is required. minleng=6, maxleng=16, alphabet, number, special charactor")
         }
-        console.log("pw 2: ", password)
+        // console.log("pw 2: ", password)
         // const pw = passwordHash.generate(password);
         // console.log("testpw: ", pw)
         await createUser(username, email, image, password);

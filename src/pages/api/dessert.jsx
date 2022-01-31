@@ -33,7 +33,7 @@ export default async function handler(req, res) {
             throw ValidateError("image", "image is required.");
         }
 
-        console.log("api amount = ", amount);
+        // console.log("api amount = ", amount);
         // step 4, connect to db & create flamingo
         await createDessert(name, amount, price, ingredients, image, userID);
         res.status(200).json(

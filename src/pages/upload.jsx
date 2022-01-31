@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 import React from "react";
 import { useState } from 'react'
-import Header from '../components/header';
-import Footer from '../components/footer';
 import { useSession } from 'next-auth/client';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -10,10 +8,11 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import AddAPhotoRoundedIcon from '@mui/icons-material/AddAPhotoRounded';
 import CardMedia from '@mui/material/CardMedia';
 import { isValidPositiveFractionNumber } from "../components/validation";
+import NoSession from '../components/nosession';
 
 export default function Upload() {
     const router = useRouter();
-    const [session] = useSession();
+    const [session, loadingSession] = useSession();
 
     const [name, setName] = useState("");
     const [amount, setAmount] = useState("");
@@ -88,7 +87,7 @@ export default function Upload() {
 
         const body = JSON.stringify(data);
 
-        console.log(data);
+        // console.log(data);
 
         const requestOptions = {
             method: 'POST',
@@ -111,111 +110,120 @@ export default function Upload() {
         router.push("/");
     }
 
-
+    if (loadingSession) {
+        return <p>Loading...</p>;
+    }
     return (
         <div>
-            <Header/>
-            <p className="upload_title">Upload Dessert</p>
-            <div className="upload_form">
-                <p className="upload_description">Dessert Information</p>
-                <TextField
-                    label="Name of dessert"
-                    variant="filled"
-                    onChange={handleName}
-                    value={name}
-                    sx={{backgroundColor: "white", borderRadius: "5px", width: "100%", margin: "0.5rem auto"}}
-                    inputProps={{maxLength: 100}}
-                    error={!!nameError}
-                    helperText={nameError}
-                />
-                <div className="upload_input_div">
+            {!session && (
+                <>
+                <NoSession/>
+                </>
+            )}
+            {session && (
+                <>
+                <p className="upload_title">Upload Dessert</p>
+                <div className="upload_form">
+                    <p className="upload_description">Dessert Information</p>
                     <TextField
-                        label="Amount"
+                        label="Name of dessert"
                         variant="filled"
-                        type="number"
-                        onChange={handleAmount}
-                        value={amount}
+                        onChange={handleName}
+                        value={name}
                         sx={{backgroundColor: "white", borderRadius: "5px", width: "100%", margin: "0.5rem auto"}}
-                        InputProps={{
-                            inputProps: { min: 0, max: 100 }
-                        }}
-                        error={!!amountError}
-                        helperText={amountError}
+                        inputProps={{maxLength: 100}}
+                        error={!!nameError}
+                        helperText={nameError}
                     />
-                    <div className="upload_input_div_space"/>
+                    <div className="upload_input_div">
+                        <TextField
+                            label="Amount"
+                            variant="filled"
+                            type="number"
+                            onChange={handleAmount}
+                            value={amount}
+                            sx={{backgroundColor: "white", borderRadius: "5px", width: "100%", margin: "0.5rem auto"}}
+                            InputProps={{
+                                inputProps: { min: 0, max: 100 }
+                            }}
+                            error={!!amountError}
+                            helperText={amountError}
+                        />
+                        <div className="upload_input_div_space"/>
+                        <TextField
+                            label="Price"
+                            variant="filled"
+                            type="number"
+                            onChange={handlePrice}
+                            value={price}
+                            sx={{backgroundColor: "white", borderRadius: "5px", width: "100%", margin: "0.5rem auto"}}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">CAD
+                                    </InputAdornment>
+                                ),
+                                inputProps: { min: 0, max: 1000 }
+                            }}
+                            error={!!priceError}
+                            helperText={priceError}
+                        />
+                    </div>
+                    
                     <TextField
-                        label="Price"
+                        multiline
+                        rows={4}
+                        label="Ingredients"
                         variant="filled"
-                        type="number"
-                        onChange={handlePrice}
-                        value={price}
+                        onChange={handleIngredients}
+                        value={ingredients}
                         sx={{backgroundColor: "white", borderRadius: "5px", width: "100%", margin: "0.5rem auto"}}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">CAD
-                                </InputAdornment>
-                            ),
-                            inputProps: { min: 0, max: 1000 }
-                        }}
-                        error={!!priceError}
-                        helperText={priceError}
+                        inputProps={{maxLength: 1000}}
                     />
-                </div>
-                
-                <TextField
-                    multiline
-                    rows={4}
-                    label="Ingredients"
-                    variant="filled"
-                    onChange={handleIngredients}
-                    value={ingredients}
-                    sx={{backgroundColor: "white", borderRadius: "5px", width: "100%", margin: "0.5rem auto"}}
-                    inputProps={{maxLength: 1000}}
-                />
-                <div className="upload_image_div_div">
-                    <div className="upload_image_div">
-                        <label className="upload_image">
-                            {image == "" && (
-                                <AddAPhotoRoundedIcon sx={{fontSize: "5rem", color: "#9e9e9e", margin: "4.5rem 7.5rem"}}/>
-                            )}
-                            {image != "" && (
-                                <div className="input_image_div">
-                                    <CardMedia className="selected_image"
-                                        component="img"
-                                        image={image}
-                                        alt="missing pet/person image"
-                                        sx={{width: "20rem", height: "14rem", borderRadius: "10px"}}
-                                    />
-                                </div>
-                            )}
-                            <input type="file" className="upload_input" onChange={handleSetImage}/>
-                        </label>
+                    <div className="upload_image_div_div">
+                        <div className="upload_image_div">
+                            <label className="upload_image">
+                                {image == "" && (
+                                    <AddAPhotoRoundedIcon sx={{fontSize: "5rem", color: "#9e9e9e", margin: "4.5rem 7.5rem"}}/>
+                                )}
+                                {image != "" && (
+                                    <div className="input_image_div">
+                                        <CardMedia className="selected_image"
+                                            component="img"
+                                            image={image}
+                                            alt="missing pet/person image"
+                                            sx={{width: "20rem", height: "14rem", borderRadius: "10px"}}
+                                        />
+                                    </div>
+                                )}
+                                <input type="file" className="upload_input" onChange={handleSetImage}/>
+                            </label>
+                        </div>
+                        <div className="upload_image_div">
+                            <label className="upload_image">
+                                {image == "" && (
+                                    <AddRoundedIcon sx={{fontSize: "5rem", color: "#9e9e9e", margin: "4.5rem 7.5rem"}}/>
+                                )}
+                                {image != "" && (
+                                    <div className="input_image_div">
+                                        <CardMedia className="selected_image"
+                                            component="img"
+                                            image={image}
+                                            alt="missing pet/person image"
+                                            sx={{width: "20rem", height: "14rem", borderRadius: "10px"}}
+                                        />
+                                    </div>
+                                )}
+                                <input type="file" className="upload_input" onChange={handleSetImage}/>
+                            </label>
+                        </div>
                     </div>
-                    <div className="upload_image_div">
-                        <label className="upload_image">
-                            {image == "" && (
-                                <AddRoundedIcon sx={{fontSize: "5rem", color: "#9e9e9e", margin: "4.5rem 7.5rem"}}/>
-                            )}
-                            {image != "" && (
-                                <div className="input_image_div">
-                                    <CardMedia className="selected_image"
-                                        component="img"
-                                        image={image}
-                                        alt="missing pet/person image"
-                                        sx={{width: "20rem", height: "14rem", borderRadius: "10px"}}
-                                    />
-                                </div>
-                            )}
-                            <input type="file" className="upload_input" onChange={handleSetImage}/>
-                        </label>
-                    </div>
+                    <p className="newpost_image_error">{imageError}</p>
                 </div>
-                <p className="newpost_image_error">{imageError}</p>
-            </div>
-            <div className="upload_button_div">
-                <a onClick={validateInputAndUpload} className="upload_button">Upload</a>
-            </div>
-            <Footer/>
+                <div className="upload_button_div">
+                    <a onClick={validateInputAndUpload} className="upload_button">Upload</a>
+                </div>
+                </>
+            )}
         </div>
     )
 }
