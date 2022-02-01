@@ -2,9 +2,8 @@ import React from "react";
 import CardMedia from '@mui/material/CardMedia';
 import { useRouter } from 'next/router';
 
-export default function Dessert(props) {
+export default function Dessert({dessert}) {
     const router = useRouter();
-    const dessert = props.dessert;
     return (
         <div key={dessert.id} className="cards" onClick={() => router.push(`/detailPage/${dessert.id}`)}>
             <p className="card_title">{dessert.name}</p>

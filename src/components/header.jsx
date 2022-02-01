@@ -12,7 +12,7 @@ export default function Header() {
             <div className="header_left">
                 <p><Link href="/upload">UPLOAD</Link></p>
                 <p><Link href="/">SHOPPING</Link></p>
-                <p><Link href="/">ABOUT US</Link></p>
+                <p><Link href="/about">ABOUT US</Link></p>
             </div>
             {!session && (
                 <>
@@ -25,8 +25,8 @@ export default function Header() {
             {session && (
                 <>
                 <div className="header_right">
-                    <Link href="/user/profile"><AccountCircleOutlinedIcon fontSize="large" className="header_icon"/></Link>
-                    <Link href="/user/cart"><ShoppingCartOutlinedIcon fontSize="large" className="header_icon"/></Link>
+                    <Link href="/user/profile"><AccountCircleOutlinedIcon fontSize="large" className="header_icon" sx={{cursor: "pointer"}}/></Link>
+                    <Link href="/user/cart"><ShoppingCartOutlinedIcon fontSize="large" className="header_icon" sx={{cursor: "pointer"}}/></Link>
                     <Link href="/"><button onClick={() => signOut({redirect: false, callbackUrl: "/"})} className="header_button">SIGNOUT</button></Link>
                 </div>
                 </>

@@ -1,6 +1,8 @@
 import { useSession, getSession } from "next-auth/client"
 import NoSession from "../../components/nosession"
 import { useRouter } from 'next/router'
+import { getDessertsByUserID } from "../../backend/database";
+import UserDessert from "../../components/userdessert";
 
 export default function User(props) {
     const [session, loadingSession] = useSession();
@@ -32,14 +34,24 @@ export default function User(props) {
                             <p>{sessionInfo.email}</p>
                         </div>
                         <div className="user_buttons">
+                            <p className="user_button" onClick={() => router.push("/user/profile")}>My Desserts</p>
                             <p className="user_button" onClick={() => router.push("/user/edit")}>Edit Profile</p>
                             <p className="user_button" onClick={() => router.push("/user/cart")}>Cart</p>
                             <p className="user_button" onClick={() => router.push("/user/order")}>My Order</p>
                         </div>
                     </div>
                     <div className="user_display">
-                        {displaySelect == "" && (
+                        {displaySelect == "profile" && (
                             <>
+                            <div className="user_cards">
+                                {props.desserts.map(
+                                    (dessert) => {
+                                        return (
+                                            <UserDessert dessert={dessert}/>
+                                        )
+                                    }
+                                )}
+                            </div>
                             </>
                         )}
                         {displaySelect == "edit" && (
@@ -73,15 +85,33 @@ export async function getServerSideProps(ctx) {
     if(!session) {
         return {
             props: {
+                desserts: null,
                 session: null
             }
         }
     }
     else if(session) {
+        const dessertsdata = await getDessertsByUserID(session.id);
+
+        const desserts = dessertsdata.reverse().map(
+            (dessert) => {
+                return {
+                    id: dessert.id.toString(),
+                    name: dessert.name,
+                    amount: dessert.amount,
+                    price: dessert.price,
+                    ingredients: dessert.ingredients,
+                    image: dessert.image
+                }
+            }
+        )
+
+
         return {
             props: {
                 session,
-                display
+                display,
+                desserts
             }
         }
     }

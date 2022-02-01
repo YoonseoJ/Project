@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inria+Serif&display=swap')
-$primary_color: #f0e9a9
-$secondary_color: #f5f2d8
+$primary_color: #FFCD58
+$secondary_color: #fff1d1
+$button_color_1: #ffb811
+$button_color_2: #ffb811
+$button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102, 102, 0.19)
 
 // header
 .header_div
@@ -27,7 +30,7 @@ $secondary_color: #f5f2d8
 
 .header_button
     border: none
-    background-color: #aaa255
+    background-color: $button_color_1
     color: white
     height: 2.5rem
     margin: 0 0.5rem
@@ -39,9 +42,10 @@ $secondary_color: #f5f2d8
     width: 6rem
     font-size: 0.8rem
     border-radius: 10px
+    cursor: pointer
 
 .header_button:hover
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: $button_shadow
 
 .header_icon
     margin: 0 0.5rem
@@ -133,16 +137,16 @@ $secondary_color: #f5f2d8
     flex-direction: column
     justify-content: center
     align-items: center
-    padding: 3rem 0 2rem
+    padding: 2rem 0 2rem
     border-radius: 10px
-    height: 31rem
+    height: 32rem
 
 .user_display
     background-color: #f3f1ed
     width: 46rem
     border-radius: 10px
     padding: 3rem 3rem
-    height: 40rem
+    min-height: 40rem
 
 .user_info, .user_img_div
     width: 12rem
@@ -172,6 +176,64 @@ $secondary_color: #f5f2d8
 
 .user_display p
     font-size: 1.5rem
+
+.user_cards
+    display: flex
+    flex-wrap: wrap
+
+//user card
+.usercards
+    border-radius: 10px
+    width: 18rem
+    margin: 0.5rem 1rem
+    padding: 1rem
+    background-color: white
+
+.usercards:hover
+    cursor: pointer
+    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.2), 0 6px 20px 0 rgba(95, 95, 95, 0.19)
+
+.usercard_title
+    margin: 0 0 0.8rem
+    font-size: 1.5rem
+    text-align: center
+    font-weight: 500
+
+.usercard_image
+    width: 16rem
+    height: 16rem
+    margin: auto
+    border-radius: 10px
+
+.usercard_info
+    text-align: center
+    margin-top: -1rem
+
+.usercard_design
+    display: flex
+    justify-content: center
+
+.usercard_design img
+    width: 5rem
+    margin: 0.5rem 0
+
+.usercard_button_div
+    display: flex
+    justify-content: center
+
+.usercard_button
+    margin: 1rem auto 0
+    padding: 0.5rem 1.5rem
+    width: 14rem
+    text-align: center
+    font-weight: 500
+    border-radius: 10px
+    background-color: $primary_color
+    float: right
+    box-shadow: 0 2px 3px 0 rgba(156, 156, 156, 0.2), 0 2px 5px 0 rgba(151, 151, 151, 0.19)
+
+.usercard_button:hover
+    box-shadow: 0 2px 3px 0 rgba(73, 73, 73, 0.2), 0 2px 5px 0 rgba(73, 73, 73, 0.19)
     
 
 // card
@@ -493,3 +555,13 @@ $secondary_color: #f5f2d8
 
 .nosession_button:hover
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+
+// about
+.about_div
+    min-height: 35vw
+    width: 60rem
+    margin: auto
+    padding: 5rem
+
+.about_div p
+    margin: 1rem 0

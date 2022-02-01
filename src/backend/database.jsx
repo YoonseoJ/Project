@@ -48,6 +48,13 @@ export async function createDessert(name, amount, price, ingredients, image, use
     return 
 };
 
+export async function getDessertsByUserID(userID) {
+    const client = await mongoose.connect(uri);
+    const desserts = await Desserts.find({user: userID}).exec();
+
+    return desserts;
+}
+
 export async function getUsers() {
     const client = await mongoose.connect(uri);
 
