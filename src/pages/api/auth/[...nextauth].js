@@ -108,7 +108,7 @@ export default NextAuth({
         },
 
         async redirect({url, baseUrl}) {
-            return Promise.resolve(url)
+            return baseUrl
         }
     },
     secret: process.env.NEXT_AUTH_SECRET

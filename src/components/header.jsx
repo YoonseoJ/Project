@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useSession, signOut, signIn } from "next-auth/client"
+import { useSession, signOut, signin } from "next-auth/client"
 import Link from 'next/link'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -17,7 +17,7 @@ export default function Header() {
             {!session && (
                 <>
                 <div className="header_right">
-                    <button onClick={() => signIn()} className="header_button">LOGIN</button>
+                    <button onClick={() => signin()} className="header_button">LOGIN</button>
                     <Link href="/signup"><button className="header_button">SIGNUP</button></Link>
                 </div>
                 </>

@@ -44,7 +44,7 @@ export default function SignIn({ providers, csrfToken }) {
             },
             // body: body
         };
-        const response = await fetch("http://localhost:3000/api/checkuser", requestOptions);
+        const response = await fetch(`${process.env.PUBLIC_URL}/api/checkuser`, requestOptions);
         const test = await response.json()
         console.log("test! ", test);
         for(let i = 0; i < test.length; i++) {
