@@ -98,7 +98,7 @@ export default function Upload() {
         };
 
         try {
-            const response = await fetch("http://localhost:3000/api/dessert", requestOptions);
+            const response = await fetch(`${process.env.PUBLIC_URL}/api/dessert`, requestOptions);
         } catch(error) {
             console.log("error**: ", error);
         }

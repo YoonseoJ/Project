@@ -77,7 +77,7 @@ export default function SignUp({ providers, csrfToken }) {
                     },
                     body: body
                 };
-                const response = await fetch("http://localhost:3000/api/signup", requestOptions);
+                const response = await fetch(`${process.env.PUBLIC_URL}/api/signup`, requestOptions);
                 if(!response.ok) {
                     alert("User already exist. Please log in.")
                 }
