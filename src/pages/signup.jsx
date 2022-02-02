@@ -2,8 +2,6 @@ import React from "react";
 import { useRouter } from 'next/router';
 import { useState } from 'react'
 import { providers, signIn, getSession, csrfToken, useSession } from "next-auth/client";
-import Header from '../components/header';
-import Footer from "../components/footer";
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import PersonIcon from '@mui/icons-material/Person';
@@ -77,14 +75,18 @@ export default function SignUp({ providers, csrfToken }) {
                     },
                     body: body
                 };
-                const response = await fetch(`${process.env.PUBLIC_URL}/api/signup`, requestOptions);
+                const response = await fetch(`/api/signup`, requestOptions);
                 if(!response.ok) {
                     alert("User already exist. Please log in.")
                 }
             } catch(error) {
                 console.log("error**: ", error);
             }
-            // signIn()
+            setUsername("")
+            setEmail("")
+            setPassword("")
+            setConfirmPassword("")
+            location.href = "/signin";
         }
     }
     return (

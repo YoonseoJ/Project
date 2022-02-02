@@ -21,6 +21,11 @@ export default async function handler(req, res) {
         var image_url = cloudinary.uploader.upload(image, function(error, result) {});
         image = (await image_url).url
 
+        console.log("nametest: ", username)
+        console.log("emailtest: ", email)
+        console.log("passwdtest: ", password)
+        console.log("imagetest: ", image)
+
         // check if user already exist
         const user = await findUser(email);
         if(user) {

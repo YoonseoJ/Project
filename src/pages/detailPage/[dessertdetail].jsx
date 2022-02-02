@@ -52,7 +52,7 @@ export default function DetailPage({props}) {
 
 DetailPage.getInitialProps = async (ctx) => {
     const { query } = ctx;
-    const response = await fetch(`${process.env.PUBLIC_URL}/api/onePost/` + query.dessertdetail);   
+    const response = await fetch(`/api/onePost/` + query.dessertdetail);   
     const data = await response.json();
     // console.log("data: ", data)
 
