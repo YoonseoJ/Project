@@ -86,7 +86,7 @@ export default function SignUp({ providers, csrfToken }) {
             setEmail("")
             setPassword("")
             setConfirmPassword("")
-            location.href = "/signin";
+            location.href = "/signIn";
         }
     }
     return (

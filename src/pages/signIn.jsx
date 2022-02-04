@@ -30,26 +30,16 @@ export default function SignIn({ providers, csrfToken }) {
         const body = JSON.stringify(data);
 
         const requestOptions = {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
-            // body: body
+            body: body
         };
         const response = await fetch(`/api/checkuser`, requestOptions);
-        const test = await response.json()
-        console.log("test! ", test);
-        for(let i = 0; i < test.length; i++) {
-            if(test[i].email == email) {
-                return test[i];
-            }else {
-                return null;
-            }
-        }
-        console.log(test[0].email);
-        // const found = test.find(element => element.includes(email));
-        // console.log("found: ", found)
-        // return test;
+        const user = await response.json()
+        // console.log("test! ", user);
+        return {response, user};
     }
 
     const signin = async () => {
@@ -64,17 +54,17 @@ export default function SignIn({ providers, csrfToken }) {
             password != "" && 
             isValidPassword(password)
         ) {
-            const response = await checkuser();
-            console.log("user no--", await response.name)
-            if(response == null) {
+            const {response, user} = await checkuser();
+            // console.log("user no--", test)
+            if(!response.ok) {
                 // console.log("user no--", response)
                 alert("User does not exist. Please Sign up first.")
             }
-            if(response.password != password) { // passwordHash.generate(password)
+            else if(response.ok && user.password != password) { // passwordHash.generate(password)
                 setPasswordError("Password does not match")
             }
             try {
-                if(response != null && response.password == password) {
+                if(response.ok && user.password == password) {
                     // password = await hashPassword(password)
                     signIn("credentials", { email: email, password: password })
                 }

@@ -1,10 +1,6 @@
 import CardMedia from '@mui/material/CardMedia';
-import RecommendScarf from '../../components/recommendscarf';
-import { useState } from 'react'
 
 export default function DetailPage({props}) {
-    //console.log("props--", props.data)
-    //console.log("props22--", props.scarves)
     return (
         <>
         <div className="detail_card_div">
@@ -52,7 +48,7 @@ export default function DetailPage({props}) {
 
 DetailPage.getInitialProps = async (ctx) => {
     const { query } = ctx;
-    const response = await fetch(`/api/onePost/` + query.dessertdetail);   
+    const response = await fetch(`${process.env.PUBLIC_URL}/api/onePost/` + query.dessertdetail);   
     const data = await response.json();
     // console.log("data: ", data)
 

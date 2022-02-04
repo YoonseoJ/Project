@@ -43,6 +43,7 @@ export default function User(props) {
                     <div className="user_display">
                         {displaySelect == "profile" && (
                             <>
+                            <p>My Desserts</p>
                             <div className="user_cards">
                                 {props.desserts.map(
                                     (dessert) => {
