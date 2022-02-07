@@ -114,7 +114,7 @@ export default function Upload() {
         return <p>Loading...</p>;
     }
     return (
-        <div>
+        <div className="upload_div">
             {!session && (
                 <>
                 <NoSession/>

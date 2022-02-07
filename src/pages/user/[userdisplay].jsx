@@ -24,7 +24,7 @@ export default function User(props) {
             )}
             {session && (
                 <>
-                <div  className="user_div">
+                <div className="user_div">
                     <div className="user_nav">
                         <div className="user_img_div">
                             <img src={sessionInfo.image} alt="user profile image" className="user_img"/>
