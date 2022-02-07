@@ -1,14 +1,14 @@
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import React from "react";
-import { useState } from 'react'
-import { useSession } from 'next-auth/client';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import AddAPhotoRoundedIcon from '@mui/icons-material/AddAPhotoRounded';
-import CardMedia from '@mui/material/CardMedia';
+import { useState } from "react"
+import { useSession } from "next-auth/client";
 import { isValidPositiveFractionNumber } from "../components/validation";
-import NoSession from '../components/nosession';
+import NoSession from "../components/nosession";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import AddAPhotoRoundedIcon from "@mui/icons-material/AddAPhotoRounded";
+import CardMedia from "@mui/material/CardMedia";
 
 export default function Upload() {
     const router = useRouter();
@@ -84,13 +84,10 @@ export default function Upload() {
             image,
             userID: session.id
         }
-
         const body = JSON.stringify(data);
 
-        // console.log(data);
-
         const requestOptions = {
-            method: 'POST',
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },

@@ -2,11 +2,9 @@ import { getOneDessert } from "../../../backend/database";
 
 export default async function handler(req, res) {
     const { getAPost } = req.query
-    // console.log("test:", getAPost)
     try {
-        if (req.method == 'GET') {
+        if (req.method == "GET") {
             const data = await getOneDessert(getAPost);
-            // console.log("here: ", data)
             res.status(200).json(data);
             return;
         }

@@ -1,4 +1,4 @@
-import { createUser, getUsers } from '../../backend/database';
+import { createUser, getUsers } from "../../backend/database";
 import { getSession } from "next-auth/client";
 
 // step 3, the API
@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const session = await getSession({req});
     // console.log("session: ", session);
     if (session) {
-        if (req.method == 'POST') {
+        if (req.method == "POST") {
             const user = await getSession({req});
             // console.log("user: ", user.user.image);
 

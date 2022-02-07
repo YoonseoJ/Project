@@ -1,9 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inria+Serif&display=swap')
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inria+Serif&display=swap")
 $primary_color: #e0d9c8
-$secondary_color: #fff1d1
+$secondary_color: #ffffff7e
+$additional_color:#f1eee4
 $button_color_1: #c0b9a8
-$button_color_2: #ffb811
-$button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102, 102, 0.19)
+$div_shadow: 0 5px 5px 0 rgba(167, 167, 167, 0.2), 0 5px 5px 0 rgba(175, 175, 175, 0.19)
+$button_shadow: 0 2px 3px 0 rgba(156, 156, 156, 0.2), 0 2px 5px 0 rgba(151, 151, 151, 0.19)
+$button_hover_shadow: 0 2px 5px 0 rgba(73, 73, 73, 0.2), 0 3px 10px 0 rgba(73, 73, 73, 0.19)
+$card_shadow: 0 4px 5px 0 rgba(167, 167, 167, 0.2), 0 4px 10px 0 rgba(175, 175, 175, 0.19)
+$card_hover_shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.2), 0 4px 20px 0 rgba(95, 95, 95, 0.19)
 
 // header
 .header_div
@@ -45,9 +49,10 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     font-size: 0.8rem
     border-radius: 10px
     cursor: pointer
+    box-shadow: $button_shadow
 
 .header_button:hover
-    box-shadow: $button_shadow
+    box-shadow: $button_hover_shadow
 
 .header_icon
     margin: 0 0.5rem
@@ -85,14 +90,6 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     background-color: white
     opacity: 0.5
 
-// .homepage_image
-//     margin: -5rem 15rem 0 0
-//     width: 100%
-//     position: absolute
-//     z-index: -10
-//     height: 100%
-//     opacity: 0.5
-
 .homepage_text_div
     position: absolute
     margin: 10vw 0 0 50vw
@@ -102,33 +99,109 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     margin: 0
     font-size: 6vw
     font-weight: 400
-    font-family: 'DM Serif Display', serif
+    font-family: "DM Serif Display", serif
     text-align: right
     color: #464646
 
-.background_img
-    position: absolute
-    width: 20rem
+.home_image
     z-index: 10
+    position: absolute
+
+.cupcake
+    width: 17rem
     margin: 2rem 0 0
 
-.background_img2
-    position: absolute
+.chococupcake
     width: 20rem
-    z-index: 10
     margin: 15rem 0 0 13rem
 
-.background_img3
-    position: absolute
+.berrycake
     width: 20rem
-    z-index: 10
     margin: 1rem 0 0 25rem
 
-.background_img4
-    position: absolute
-    width: 25rem
-    z-index: 10
+.croffle
+    width: 26rem
     margin: 18rem 0 0 30rem
+
+.blueberry
+    width: 4rem
+    margin: 22rem 0 0 30rem
+
+.blueberrys
+    width: 6rem
+    margin: 8rem 0 0 15rem
+
+.peach
+    width: 12rem
+    margin: 30rem 0 0 50rem
+
+.blueberry2
+    width: 3.5rem
+    margin: 26rem 0 0 5rem
+    transform: rotate(50deg)
+
+.leaf_1
+    width: 3.5rem
+    margin: 12rem 0 0 23rem
+    transform: rotate(-10deg)
+
+.leaf_1_2
+    width: 3.5rem
+    margin: 30rem 0 0 30rem
+    transform: rotate(50deg)
+
+.leaf_2
+    width: 6rem
+    margin: 26rem 0 0 8rem
+
+.leaf_2_2
+    width: 6rem
+    margin: 30rem 0 0 30rem
+    transform: rotate(100deg)
+
+.leaf_2_3
+    width: 6rem
+    margin: 12rem 0 0 42rem
+    transform: rotate(50deg)
+
+.leaf_3
+    width: 3.5rem
+    margin: 21rem 0 0 47rem
+    transform: rotate(50deg)
+
+.leaf_4
+    width: 3.5rem
+    margin: 5rem 0 0 15rem
+
+.leaf_4_2
+    width: 3.5rem
+    margin: 32rem 0 0 47rem
+    transform: rotate(-50deg)
+
+.leaf_4_3
+    width: 3.5rem
+    margin: 20rem 0 0 33rem
+    transform: rotate(60deg)
+
+.leaf_4_4
+    width: 3.5rem
+    margin: 27rem 0 0 60rem
+    transform: rotate(70deg)
+
+.leaf_4_5
+    width: 3.5rem
+    margin: 28rem 0 0 12rem
+    transform: rotate(70deg)
+
+.strawberry
+    width: 6rem
+    margin: 29rem 0 0 2rem
+    transform: rotate(-50deg)
+
+.strawberry_2
+    width: 6rem
+    margin: 6rem 0 0 20rem
+    transform: rotate(50deg)
 
 // homepage cards
 .display_desserts
@@ -143,7 +216,6 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
 .dessert_div
     display: flex
     flex-wrap: wrap
-    // background-color: red
 
 .searchbar
     margin: 2rem auto 1rem
@@ -171,8 +243,7 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     justify-content: space-between
 
 .user_nav
-    // background-color: #f3f1ed
-    background-color: #ffffff7e
+    background-color: $secondary_color
     width: 18rem
     display: flex
     flex-direction: column
@@ -181,17 +252,15 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     padding: 2rem 0 2rem
     border-radius: 10px
     height: 32rem
-    box-shadow: 0 4px 5px 0 rgba(167, 167, 167, 0.2), 0 4px 10px 0 rgba(175, 175, 175, 0.19)
-
+    box-shadow: $div_shadow
 
 .user_display
-    background-color: #ffffff7e
+    background-color: $secondary_color
     width: 46rem
     border-radius: 10px
     padding: 3rem 3rem
     min-height: 40rem
-    box-shadow: 0 4px 5px 0 rgba(167, 167, 167, 0.2), 0 4px 10px 0 rgba(175, 175, 175, 0.19)
-
+    box-shadow: $div_shadow
 
 .user_info, .user_img_div
     width: 12rem
@@ -233,12 +302,11 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     margin: 0.5rem 1rem
     padding: 1rem
     background-color: white
-    box-shadow: 0 4px 5px 0 rgba(167, 167, 167, 0.2), 0 4px 10px 0 rgba(175, 175, 175, 0.19)
-
+    box-shadow: $card_shadow
 
 .usercards:hover
     cursor: pointer
-    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.2), 0 6px 20px 0 rgba(95, 95, 95, 0.19)
+    box-shadow: $card_hover_shadow
 
 .usercard_title
     margin: 0 0 0.8rem
@@ -274,14 +342,13 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     width: 16rem
     text-align: center
     font-weight: 500
-    border-radius: 10px
+    border-radius: 50px
     background-color: $primary_color
     float: right
-    box-shadow: 0 2px 3px 0 rgba(156, 156, 156, 0.2), 0 2px 5px 0 rgba(151, 151, 151, 0.19)
+    box-shadow: $button_shadow
 
 .usercard_button:hover
-    box-shadow: 0 2px 3px 0 rgba(73, 73, 73, 0.2), 0 2px 5px 0 rgba(73, 73, 73, 0.19)
-    
+    box-shadow: $button_hover_shadow
 
 // card
 .cards
@@ -290,11 +357,11 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     margin: 0.5rem
     padding: 1rem
     background-color: white
-    box-shadow: 0 2px 4px 0 rgba(167, 167, 167, 0.2), 0 3px 5px 0 rgba(175, 175, 175, 0.19)
+    box-shadow: $card_shadow
 
 .cards:hover
     cursor: pointer
-    box-shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.2), 0 6px 20px 0 rgba(95, 95, 95, 0.19)
+    box-shadow: $card_hover_shadow
 
 .card_title
     margin: 0 0 0.8rem
@@ -330,26 +397,27 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     width: 16rem
     text-align: center
     font-weight: 500
-    border-radius: 10px
+    border-radius: 50px
     background-color: $primary_color
     float: right
-    box-shadow: 0 2px 3px 0 rgba(156, 156, 156, 0.2), 0 2px 5px 0 rgba(151, 151, 151, 0.19)
+    box-shadow: $button_shadow
 
 .card_button:hover
-    box-shadow: 0 2px 3px 0 rgba(73, 73, 73, 0.2), 0 2px 5px 0 rgba(73, 73, 73, 0.19)
+    box-shadow: $button_hover_shadow
 
 .recommend
     border-radius: 10px
     width: 12rem
     margin: 0.56rem
-    background-color: $secondary_color
+    background-color: $additional_color
+    box-shadow: $card_shadow
 
 .recommend:hover
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: $card_hover_shadow
 
 .recommend_image
     width: 12rem
-    height: 17rem
+    height: 12rem
     border-radius: 10px 10px 0 0 
 
 .recommend_info
@@ -373,25 +441,32 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     padding: 2rem 3.5rem
     background-color: white
     border-radius: 10px
-    box-shadow: 0 2px 4px 0 rgba(167, 167, 167, 0.2), 0 3px 5px 0 rgba(175, 175, 175, 0.19)
+    box-shadow: $div_shadow
 
 .detail_card_title
+    position: relative
     text-align: center
-    font-size: 3rem
+    font-size: 2.5rem
     font-weight: 500
     margin:  2rem 0 4rem
+    z-index: 5
 
 .detail_card_desc
-    font-size: 1.3rem
+    font-size: 1.1rem
 
 .detail_card_image
     width: 20rem
     height: 20rem
     border-radius: 10px
     margin: 3rem 5rem 0 0
+    position: relative
+    z-index: 5
+    box-shadow: $card_hover_shadow
 
 .detail_card_info
     display: flex
+    position: relative
+    z-index: 5
 
 .detail_card_buy
     display: flex
@@ -408,28 +483,31 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     margin-top: 3rem
 
 .detail_card_buy_price
-    font-size: 1.6rem
+    font-size: 1.3rem
     font-weight: 500
     margin: 2.5rem 0 0
+    position: relative
+    z-index: 5
 
 .detail_card_buy_button
     border: none
-    border-radius: 10px
+    border-radius: 50px
     background-color: $primary_color
     width: 12rem
     padding: 0 1rem
-    height: 3rem
-    font-weight: 500
+    height: 2.7rem
     font-size: 1.2rem
     display: flex
+    color: white
     justify-content: space-evenly
     align-items: center
+    box-shadow: $button_shadow
 
 .detail_card_buy_button2
     background-color: $button_color_1
 
 .detail_card_buy_button:hover
-    box-shadow: 0 0 3px  rgba(0, 0, 0, 0.2), 0 0 5px  rgba(0, 0, 0, 0.19)
+    box-shadow: $button_hover_shadow
     cursor: pointer
 
 .detail_card_buy_button_dscrt
@@ -438,11 +516,8 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     font-size: 1.4rem
 
 .detail_card_buy_button_dscrt:hover
-    text-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19)
+    text-shadow: $button_hover_shadow
     cursor: pointer
-
-.button_icon
-    width: 1.3rem
 
 .detail_card_info_elements
     width: 100%
@@ -451,9 +526,25 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     display: flex
 
 .detail_desserts_title
-    margin: 5rem 2rem 2rem
+    margin: 7rem 1rem 1rem
     font-size: 1.3rem
     font-weight: 500
+
+.detail_backgroud
+    position: absolute
+    height: 12rem
+    width: 55rem
+    background-color: #ece8d9dc
+    z-index: 0
+    margin: 2rem -3.5rem 0
+
+.detail_backgroud2
+    position: absolute
+    height: 7rem
+    width: 45rem
+    background-color: #f7f5eabd
+    z-index: 2
+    margin: 11.3rem -3.5rem
 
 // upload
 .upload_title
@@ -473,8 +564,7 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     background-color: $primary_color
     padding: 2rem
     border-radius: 20px
-    box-shadow: 0px 4px 5px 1px rgba(112, 112, 112, 0.2), 3px 4px 10px 3px rgba(175, 175, 175, 0.19)
-
+    box-shadow: $div_shadow
 
 .upload_input
     display: none
@@ -501,7 +591,6 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
 
 .upload_image
     position: relative
-    // background-color: red
     margin: 1rem auto
     padding: 0
 
@@ -517,28 +606,31 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
 
 .upload_button
     border: none
-    background-color: $primary_color
-    padding: 0.5rem 2rem
-    border-radius: 10px
+    background-color: $button_color_1
+    width: 12rem
+    text-align: center
+    padding: 0.7rem 2rem
+    border-radius: 50px
     font-weight: 500
+    color: white
+    box-shadow: $button_shadow
 
 .upload_button:hover
     cursor: pointer
-    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: $button_hover_shadow
 
 .upload_location
     float: right
-    background-color: #dac7bd
+    background-color: $primary_color
     padding: 0.2rem 0.5rem
     border-radius: 5px
     cursor: pointer
 
 .upload_location:hover
-    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: $button_hover_shadow
 
 .newpost_image_error
     color: red 
-    // background-color: white
     padding: 0.5rem
     margin-top: 0
     border-radius: 0px 0px 5px 5px
@@ -573,6 +665,11 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     margin: 1rem 0 0
     border-radius: 10px
     text-align: center
+    box-shadow: $button_shadow
+
+.signin_button:hover
+    box-shadow: $button_hover_shadow
+    cursor: pointer
 
 // nosession
 .nossession_div
@@ -594,7 +691,7 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
 
 .nosession_button
     border: none
-    background-color: #aaa255
+    background-color: $button_color_1
     color: white
     height: 2.5rem
     margin: 0 0.5rem
@@ -606,9 +703,10 @@ $button_shadow: 0 2px 8px 0 rgba(102, 102, 102, 0.2), 0 3px 8px 0 rgba(102, 102,
     width: 6rem
     font-size: 0.8rem
     border-radius: 10px
+    box-shadow: $button_shadow
 
 .nosession_button:hover
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: $button_hover_shadow
 
 // about
 .about_div

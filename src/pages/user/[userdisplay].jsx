@@ -1,6 +1,6 @@
 import { useSession, getSession } from "next-auth/client"
 import NoSession from "../../components/nosession"
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router"
 import { getDessertsByUserID } from "../../backend/database";
 import UserDessert from "../../components/userdessert";
 
@@ -106,7 +106,6 @@ export async function getServerSideProps(ctx) {
                 }
             }
         )
-
 
         return {
             props: {

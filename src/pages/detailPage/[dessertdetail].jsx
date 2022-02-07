@@ -1,9 +1,13 @@
-import CardMedia from '@mui/material/CardMedia';
+import CardMedia from "@mui/material/CardMedia";
+import RecommendDessert from "../../components/recommendscarf";
 
 export default function DetailPage({props}) {
+    console.log(props.desserts)
     return (
         <>
         <div className="detail_card_div">
+            <div className="detail_backgroud"></div>
+            <div className="detail_backgroud2"></div>
             <div className="detail_card_info">
                 <div className="detail_card_image_div">
                     <CardMedia className="detail_card_image"
@@ -18,29 +22,29 @@ export default function DetailPage({props}) {
                     <p className="detail_card_desc">Amount: {props.data.amount}</p>
                     <p className="detail_card_desc">Ingredients: {props.data.ingredients}</p>
 
-                    <p className="detail_card_buy_price">Price: {props.data.price}</p>
+                    <p className="detail_card_buy_price">Price: $ {props.data.price}</p>
                         
                     <div className="detail_card_buy">
                         <button className="detail_card_buy_button" onClick={() => alert(`Go to order page (not implemented yet)`)}>
-                            Buy Dessert <img src="/smile1.png" alt="" className="button_icon"/></button>
+                            Buy Dessert</button>
                         <button className="detail_card_buy_button detail_card_buy_button2" onClick={() => alert(`The item added to cart  (not implemented yet)`)}>
-                            Add to Cart <img src="/smile1.png" alt="" className="button_icon"/></button>
+                            Add to Cart</button>
                     </div>
 
                 </div>
             </div>
             <p className="detail_desserts_title">Checkout these other desserts</p>
-            {/* <div className="detail_desserts_div">
+            <div className="detail_desserts_div">
             {
-                props.scarves.map(
-                    (scarf) => {
+                props.desserts.map(
+                    (dessert) => {
                         return (
-                            <RecommendScarf scarf={scarf} />
+                            <RecommendDessert dessert={dessert} />
                         )
                     }
                 )
             }
-            </div> */}
+            </div>
         </div>
         </>
     )
@@ -50,22 +54,23 @@ DetailPage.getInitialProps = async (ctx) => {
     const { query } = ctx;
     const response = await fetch(`${process.env.PUBLIC_URL}/api/onePost/` + query.dessertdetail);   
     const data = await response.json();
-    // console.log("data: ", data)
 
-    // const scvs = await fetch("http://localhost:3000/api/dessert");
-    // const scrvs = await scvs.json()
+    const dsrt = await fetch("http://localhost:3000/api/dessert");
+    const dsrts = await dsrt.json()
+    console.log(dsrts)
 
-    // const scarves = [];
-    // for(let i = 0; i < 4; i++) {
-    //     let index = Math.floor(Math.random() * scrvs.length);
-    //     scarves.push(scrvs[index])
-    // }
-    // console.log(scarves)
+    const ranNums = Array.from({length: 4}, () => Math.floor(Math.random() * dsrts.length));
+
+    const desserts = [];
+    for(let i = 0; i < 4; i++) {
+        desserts.push(dsrts[ranNums[i]])
+    }
+    console.log(desserts)
 
     return {
         props : {
             data,
-            // scarves
+            desserts
         }
     }
 }

@@ -1,14 +1,11 @@
 import React from "react";
-import { useState } from 'react'
-import { providers, signIn, getSession, csrfToken, useSession } from "next-auth/client";
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import PersonIcon from '@mui/icons-material/Person';
-import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
-import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
-import { isValidEmail, isValidName, isValidPassword, hashPassword } from "../components/validation";
-import { compare, hash, genSalt } from 'bcryptjs';
-import { passwordHash } from 'password-hash';
+import { useState } from "react"
+import { providers, signIn, getSession, csrfToken } from "next-auth/client";
+import { isValidEmail, isValidPassword } from "../components/validation";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 
 export default function SignIn({ providers, csrfToken }) {
     const [password, setPassword] = useState("");
@@ -30,7 +27,7 @@ export default function SignIn({ providers, csrfToken }) {
         const body = JSON.stringify(data);
 
         const requestOptions = {
-            method: 'POST',
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -38,7 +35,6 @@ export default function SignIn({ providers, csrfToken }) {
         };
         const response = await fetch(`/api/checkuser`, requestOptions);
         const user = await response.json()
-        // console.log("test! ", user);
         return {response, user};
     }
 
@@ -55,17 +51,14 @@ export default function SignIn({ providers, csrfToken }) {
             isValidPassword(password)
         ) {
             const {response, user} = await checkuser();
-            // console.log("user no--", test)
             if(!response.ok) {
-                // console.log("user no--", response)
                 alert("User does not exist. Please Sign up first.")
             }
-            else if(response.ok && user.password != password) { // passwordHash.generate(password)
+            else if(response.ok && user.password != password) { 
                 setPasswordError("Password does not match")
             }
             try {
                 if(response.ok && user.password == password) {
-                    // password = await hashPassword(password)
                     signIn("credentials", { email: email, password: password })
                 }
             } catch(error) {
@@ -83,7 +76,7 @@ export default function SignIn({ providers, csrfToken }) {
                 {Object.values(providers).map((provider) => {
                     return (
                     <div key={provider.name} className="signin_form">
-                        {provider.name == 'Credentials' && (
+                        {provider.name == "Credentials" && (
                             <>
                             <form method="post" action="/api/auth/signin/credentials" className="signin_forms">
                                 <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
@@ -94,7 +87,7 @@ export default function SignIn({ providers, csrfToken }) {
                                     onChange={handleEmail}
                                     value={email}
                                     sx={{backgroundColor: "white", borderRadius: "10px", width: "60%", 
-                                        margin: "0.5rem auto", border: "4px solid #D0B5A5"}}
+                                        margin: "0.5rem auto", border: "4px solid #e0d9c8"}}
                                     InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
@@ -113,7 +106,7 @@ export default function SignIn({ providers, csrfToken }) {
                                     onChange={handlePassword}
                                     value={password}
                                     sx={{backgroundColor: "white", borderRadius: "10px", width: "60%", 
-                                        margin: "0.5rem auto", border: "4px solid #D0B5A5"}}
+                                        margin: "0.5rem auto", border: "4px solid #e0d9c8"}}
                                     InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
@@ -132,7 +125,7 @@ export default function SignIn({ providers, csrfToken }) {
                             </form>
                             </>
                         )}
-                        {provider.name != 'Credentials' && (
+                        {provider.name != "Credentials" && (
                             <button variant="outline" onClick={() => signIn(provider.id)} className="signin_button">
                             Sign in with {provider.name}
                             </button>
@@ -149,17 +142,15 @@ export default function SignIn({ providers, csrfToken }) {
 SignIn.getInitialProps = async (context) => {
     const { req, res } = context;
     const session = await getSession({ req });
-    // console.log("signin session", session)
 
     if (session && res && session.accessToken) {
-        // console.log('if worked');
         res.writeHead(302, {
         Location: "/",
         });
         res.end();
         return;
     }
-    // console.log('if did not worked');
+    
     return {
         session: await getSession(context),
         providers: await providers(context),

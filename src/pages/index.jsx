@@ -1,12 +1,11 @@
 import React from "react";
-import { useState } from 'react'
+import { useState } from "react"
 import Homepage from "../components/hompage";
 import { getDesserts } from "../backend/database";
 import Dessert from "../components/dessert";
 
 export default function Home({desserts}) {
     const [search, setSearch] = useState("");
-    // console.log("test: ", props.desserts)
 
     const handleSearch = (event) => {
         setSearch(event.target.value)
@@ -58,7 +57,7 @@ export async function getServerSideProps() {
                 price: dessert.price,
                 ingredients: dessert.ingredients,
                 image: dessert.image,
-            };
+            }
         }
     )
 

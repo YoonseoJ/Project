@@ -7,10 +7,9 @@ const userSchema = new mongoose.Schema(
         image: String,
         password: String,
         desserts: [
-            {type: mongoose.Schema.Types.ObjectId, ref: 'Dessert'}
+            {type: mongoose.Schema.Types.ObjectId, ref: "Dessert"}
         ]
     }
 );
 
-// use the already existing Cheetah model or create a new model in mongoose named Cheetah
-export default mongoose.models.User || mongoose.model('User', userSchema);
+export default mongoose.models.User || mongoose.model("User", userSchema);

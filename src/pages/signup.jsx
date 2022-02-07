@@ -1,12 +1,12 @@
 import React from "react";
-import { useRouter } from 'next/router';
-import { useState } from 'react'
-import { providers, signIn, getSession, csrfToken, useSession } from "next-auth/client";
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import PersonIcon from '@mui/icons-material/Person';
-import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
-import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
+import { useRouter } from "next/router";
+import { useState } from "react"
+import { providers, signIn, getSession, csrfToken } from "next-auth/client";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import PersonIcon from "@mui/icons-material/Person";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import { isValidEmail, isValidName, isValidPassword } from "../components/validation";
 
 export default function SignUp({ providers, csrfToken }) {
@@ -69,7 +69,7 @@ export default function SignUp({ providers, csrfToken }) {
                 const body = JSON.stringify(data);
                 console.log("pw 1: ", password)
                 const requestOptions = {
-                    method: 'POST',
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
@@ -99,7 +99,7 @@ export default function SignUp({ providers, csrfToken }) {
                 {Object.values(providers).map((provider) => {
                     return (
                     <div key={provider.name} className="signin_form">
-                        {provider.name == 'Credentials' && (
+                        {provider.name == "Credentials" && (
                             <>
                             <form method="post" action="/api/auth/signin/credentials" className="signin_forms">
                                 <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
@@ -109,7 +109,7 @@ export default function SignUp({ providers, csrfToken }) {
                                     onChange={handleUsername}
                                     value={username}
                                     sx={{backgroundColor: "white", borderRadius: "10px", width: "60%", 
-                                        margin: "0.5rem auto", border: "4px solid #D0B5A5"}}
+                                        margin: "0.5rem auto", border: "4px solid #e0d9c8"}}
                                     InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
@@ -128,7 +128,7 @@ export default function SignUp({ providers, csrfToken }) {
                                     onChange={handleEmail}
                                     value={email}
                                     sx={{backgroundColor: "white", borderRadius: "10px", width: "60%", 
-                                        margin: "0.5rem auto", border: "4px solid #D0B5A5"}}
+                                        margin: "0.5rem auto", border: "4px solid #e0d9c8"}}
                                     InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
@@ -147,7 +147,7 @@ export default function SignUp({ providers, csrfToken }) {
                                     onChange={handlePassword}
                                     value={password}
                                     sx={{backgroundColor: "white", borderRadius: "10px", width: "60%", 
-                                        margin: "0.5rem auto", border: "4px solid #D0B5A5"}}
+                                        margin: "0.5rem auto", border: "4px solid #e0d9c8"}}
                                     InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
@@ -166,7 +166,7 @@ export default function SignUp({ providers, csrfToken }) {
                                     onChange={handleConfirmPassword}
                                     value={confirmPassword}
                                     sx={{backgroundColor: "white", borderRadius: "10px", width: "60%", 
-                                        margin: "0.5rem auto", border: "4px solid #D0B5A5"}}
+                                        margin: "0.5rem auto", border: "4px solid #e0d9c8"}}
                                     InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
@@ -185,7 +185,7 @@ export default function SignUp({ providers, csrfToken }) {
                             </form>
                             </>
                         )}
-                        {provider.name != 'Credentials' && (
+                        {provider.name != "Credentials" && (
                             <button variant="outline" onClick={() => signIn(provider.id)} className="signin_button">
                             Sign up with {provider.name}
                             </button>
@@ -202,17 +202,14 @@ export default function SignUp({ providers, csrfToken }) {
 SignUp.getInitialProps = async (context) => {
     const { req, res } = context;
     const session = await getSession({ req });
-    // console.log("signin session", session)
 
     if (session && res && session.accessToken) {
-        // console.log('if worked');
         res.writeHead(302, {
         Location: "/",
         });
         res.end();
         return;
     }
-    // console.log('if did not worked');
     return {
         session: await getSession(context),
         providers: await providers(context),

@@ -1,6 +1,6 @@
 import React from "react";
-import CardMedia from '@mui/material/CardMedia';
-import { useRouter } from 'next/router';
+import CardMedia from "@mui/material/CardMedia";
+import { useRouter } from "next/router";
 
 export default function UserDessert({dessert}) {
     const router = useRouter();

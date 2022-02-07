@@ -1,11 +1,9 @@
-import { useRouter } from 'next/router';
 import { useSession, signOut, signin } from "next-auth/client"
-import Link from 'next/link'
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import Link from "next/link"
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 export default function Header() {
-    const router = useRouter();
     const [session] = useSession();
     return (
         <div className="header_div">
