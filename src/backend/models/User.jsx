@@ -8,6 +8,9 @@ const userSchema = new mongoose.Schema(
         password: String,
         desserts: [
             {type: mongoose.Schema.Types.ObjectId, ref: "Dessert"}
+        ],
+        cart: [
+            {type: mongoose.Schema.Types.ObjectId, ref: "Dessert"}
         ]
     }
 );

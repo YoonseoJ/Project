@@ -1,8 +1,9 @@
 import { useSession, getSession } from "next-auth/client"
 import NoSession from "../../components/nosession"
 import { useRouter } from "next/router"
-import { getDessertsByUserID } from "../../backend/database";
+import { getDessertsByUserID, getDessertsInUserCart } from "../../backend/database";
 import UserDessert from "../../components/userdessert";
+import CartDessert from "../../components/cartdessert";
 
 export default function User(props) {
     const [session, loadingSession] = useSession();
@@ -58,16 +59,32 @@ export default function User(props) {
                         {displaySelect == "edit" && (
                             <>
                             <p>Edit Profile</p>
+                            <p>to be updated...</p>
                             </>
                         )}
                         {displaySelect == "cart" && (
                             <>
-                            <p>Cart</p>
+                            <div className="cart_div">
+                                <p>Cart</p>
+                                <div className="order_button_div">
+                                    <a onClick={() => alert("going to order page (Not implemented yet)")} className="order_button">ORDER</a>
+                                </div>
+                            </div>
+                            <div className="cart_cards">
+                                {props.cartdesserts.map(
+                                    (dessert) => {
+                                        return (
+                                            <CartDessert dessert={dessert}/>
+                                        )
+                                    }
+                                )}
+                            </div>
                             </>
                         )}
                         {displaySelect == "order" && (
                             <>
                             <p>Order</p>
+                            <p>to be updated...</p>
                             </>
                         )}
                     </div>
@@ -93,8 +110,22 @@ export async function getServerSideProps(ctx) {
     }
     else if(session) {
         const dessertsdata = await getDessertsByUserID(session.id);
+        const cart = await getDessertsInUserCart(session.id);
 
         const desserts = dessertsdata.reverse().map(
+            (dessert) => {
+                return {
+                    id: dessert.id.toString(),
+                    name: dessert.name,
+                    amount: dessert.amount,
+                    price: dessert.price,
+                    ingredients: dessert.ingredients,
+                    image: dessert.image
+                }
+            }
+        )
+        
+        const cartdesserts = cart.reverse().map(
             (dessert) => {
                 return {
                     id: dessert.id.toString(),
@@ -111,7 +142,8 @@ export async function getServerSideProps(ctx) {
             props: {
                 session,
                 display,
-                desserts
+                desserts,
+                cartdesserts
             }
         }
     }

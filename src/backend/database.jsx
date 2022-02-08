@@ -37,8 +37,15 @@ export async function createDessert(name, amount, price, ingredients, image, use
     const user = await User.findById(userID);
     user.desserts.push(dessert);
     await user.save();
-    return 
+    return;
 };
+
+// update dessert
+export async function updateDessert(dessertID, newDessert) {
+    const client = await mongoose.connect(uri);
+    const post = await Desserts.findByIdAndUpdate(dessertID, newDessert, { new: true })
+    return post;
+}
 
 // get items from user item list with user id
 // items that are created by the user
@@ -46,6 +53,42 @@ export async function getDessertsByUserID(userID) {
     const client = await mongoose.connect(uri);
     const desserts = await Desserts.find({user: userID}).exec();
     return desserts;
+}
+
+// put item in user cart
+export async function addDessertInUserCart(dessertID, userID) {
+    const client = await mongoose.connect(uri);
+    const dessert = await Desserts.findById(dessertID);
+    const user = await User.findById(userID);
+    user.cart.push(dessert);
+    await user.save();
+    return;
+}
+
+export async function checkDessertInUserCart(dessertID) {
+    const client = await mongoose.connect(uri);
+    const dessert = await User.find({cart: dessertID});
+    return dessert.length;
+}
+
+export async function getDessertsInUserCart(userID) {
+    const client = await mongoose.connect(uri);
+    const user = await User.findById(userID);
+    const desserts = user.cart;
+
+    const cartdesserts = [];
+    for(let i = 0; i < desserts.length; i++) {
+        const dsrt = await Desserts.findById(desserts[i]._id.toString())
+        cartdesserts.push(dsrt)
+    }
+    return cartdesserts;
+}
+
+export async function removeDessertInUserCart(dessertID, userID) {
+    const user = await User.findById(userID);
+    user.cart.pull(dessertID);
+    await user.save();
+    return;
 }
 
 // user all users

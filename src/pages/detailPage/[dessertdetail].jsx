@@ -1,8 +1,40 @@
 import CardMedia from "@mui/material/CardMedia";
-import RecommendDessert from "../../components/recommendscarf";
+import RecommendDessert from "../../components/recommenddessert";
+import { useState } from "react";
+import { useSession } from "next-auth/client";
 
 export default function DetailPage({props}) {
-    console.log(props.desserts)
+    const [session, loadingSession] = useSession();
+
+    // adding dessert to user's cart
+    const handleAddCart = async () => {
+        const data = {
+            dessertID: props.data._id,
+            userID: session.id
+        }
+        const body = JSON.stringify(data);
+
+        const requestOptions = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: body
+        };
+
+        try {
+            const response = await fetch(`/api/usercart`, requestOptions);
+            if(!response.ok) {
+                alert(`The item already exist in the cart`)
+            }
+            if(response.ok) {
+                alert(`The item added to cart`)
+            }
+        } catch(error) {
+            console.log("error**: ", error);
+        }
+    }
+
     return (
         <>
         <div className="detail_card_div">
@@ -27,7 +59,7 @@ export default function DetailPage({props}) {
                     <div className="detail_card_buy">
                         <button className="detail_card_buy_button" onClick={() => alert(`Go to order page (not implemented yet)`)}>
                             Buy Dessert</button>
-                        <button className="detail_card_buy_button detail_card_buy_button2" onClick={() => alert(`The item added to cart  (not implemented yet)`)}>
+                        <button className="detail_card_buy_button detail_card_buy_button2" onClick={handleAddCart}>
                             Add to Cart</button>
                     </div>
 
@@ -57,7 +89,6 @@ DetailPage.getInitialProps = async (ctx) => {
 
     const dsrt = await fetch("http://localhost:3000/api/dessert");
     const dsrts = await dsrt.json()
-    console.log(dsrts)
 
     const ranNums = Array.from({length: 4}, () => Math.floor(Math.random() * dsrts.length));
 
@@ -65,7 +96,6 @@ DetailPage.getInitialProps = async (ctx) => {
     for(let i = 0; i < 4; i++) {
         desserts.push(dsrts[ranNums[i]])
     }
-    console.log(desserts)
 
     return {
         props : {

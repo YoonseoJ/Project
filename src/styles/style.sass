@@ -2,6 +2,7 @@
 $primary_color: #e0d9c8
 $secondary_color: #ffffff7e
 $additional_color:#f1eee4
+$alert_color: #d4a5a5
 $button_color_1: #c0b9a8
 $div_shadow: 0 5px 5px 0 rgba(167, 167, 167, 0.2), 0 5px 5px 0 rgba(175, 175, 175, 0.19)
 $button_shadow: 0 2px 3px 0 rgba(156, 156, 156, 0.2), 0 2px 5px 0 rgba(151, 151, 151, 0.19)
@@ -73,7 +74,6 @@ $card_hover_shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.2), 0 4px 20px 0 rgba(95, 95,
 // homepage
 .homepage_div
     height: 45.5vw
-    // z-index: -10
 
 .homepage_background
     position: absolute
@@ -89,6 +89,12 @@ $card_hover_shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.2), 0 4px 20px 0 rgba(95, 95,
     margin: 17rem 0 0
     background-color: white
     opacity: 0.5
+
+.homepage_main
+    display: flex
+    //width: 100rem
+    // background-color: red
+    height: 45.5vw
 
 .homepage_text_div
     position: absolute
@@ -249,9 +255,9 @@ $card_hover_shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.2), 0 4px 20px 0 rgba(95, 95,
     flex-direction: column
     justify-content: center
     align-items: center
-    padding: 2rem 0 2rem
+    padding: 3rem 0 2rem
     border-radius: 10px
-    height: 32rem
+    height: 33rem
     box-shadow: $div_shadow
 
 .user_display
@@ -262,12 +268,16 @@ $card_hover_shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.2), 0 4px 20px 0 rgba(95, 95,
     min-height: 40rem
     box-shadow: $div_shadow
 
+.user_display p
+    margin: 0 0 0.5rem 1rem
+
 .user_info, .user_img_div
     width: 12rem
 
 .user_img
     border-radius: 200px
     width: 12rem
+    height: 12rem
 
 .user_info
     margin: 1rem 0 0
@@ -347,7 +357,48 @@ $card_hover_shadow: 0 4px 8px 0 rgba(92, 92, 92, 0.2), 0 4px 20px 0 rgba(95, 95,
     float: right
     box-shadow: $button_shadow
 
-.usercard_button:hover
+.usercard_button:hover, .cartcard_button:hover
+    box-shadow: $button_hover_shadow
+
+// user cart    
+.cartcard_button
+    margin: 1rem auto 0
+    padding: 0.5rem 1.5rem
+    width: 16rem
+    text-align: center
+    font-weight: 500
+    border-radius: 50px
+    background-color: $alert_color
+    float: right
+    box-shadow: $button_shadow
+    color: white
+
+.cart_div
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+.cart_cards
+    display: flex
+    flex-wrap: wrap
+    margin: 2rem 0 0
+
+.order_button_div
+    display: flex
+
+.order_button
+    border: none
+    background-color: $button_color_1
+    width: 10rem
+    text-align: center
+    padding: 0.7rem 2rem
+    border-radius: 50px
+    font-weight: 500
+    color: white
+    box-shadow: $button_shadow
+
+.order_button:hover 
+    cursor: pointer
     box-shadow: $button_hover_shadow
 
 // card
