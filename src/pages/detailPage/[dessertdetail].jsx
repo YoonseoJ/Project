@@ -1,6 +1,5 @@
 import CardMedia from "@mui/material/CardMedia";
 import RecommendDessert from "../../components/recommenddessert";
-import { useState } from "react";
 import { useSession } from "next-auth/client";
 
 export default function DetailPage({props}) {
@@ -87,7 +86,7 @@ DetailPage.getInitialProps = async (ctx) => {
     const response = await fetch(`${process.env.PUBLIC_URL}/api/onePost/` + query.dessertdetail);   
     const data = await response.json();
 
-    const dsrt = await fetch("http://localhost:3000/api/dessert");
+    const dsrt = await fetch(`${process.env.PUBLIC_URL}/api/dessert`);
     const dsrts = await dsrt.json()
 
     const ranNums = Array.from({length: 4}, () => Math.floor(Math.random() * dsrts.length));
