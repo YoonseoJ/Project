@@ -1,4 +1,4 @@
-### Dessert Web App
+<h1>Dessert Web App</h1>
 
 A web application that allows to sell and order desserts.
 
