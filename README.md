@@ -16,9 +16,8 @@ Open [Dessert](https://yj-desserts.herokuapp.com/) with your browser to see the 
 To run this project, install it locally using npm:
 
 ```bash
-npm run dev
-# or
-yarn dev
+npm install
+npm start
 ```
 
 ## Features
